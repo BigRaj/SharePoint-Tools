@@ -74,7 +74,7 @@
     }
     else{
         RegisterSod("sp.res.resx", "/_layouts/15/ScriptResx.ashx");
-        RegisterSod("sp.js", "/_layouts/15/sp.debug.js");
+        RegisterSod("sp.js", "/_layouts/15/sp.js");
         RegisterSodDep("sp.js", "sp.res.resx");
 
         SP.SOD.executeFunc('sp.js',false,function(){
