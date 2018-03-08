@@ -56,9 +56,9 @@
     }
     else{
         RegisterSod("sp.res.resx", "/_layouts/15/ScriptResx.ashx");
-        RegisterSod("sp.ui.dialog.js", "/_layouts/15/sp.ui.dialog.debug.js");
+        RegisterSod("sp.ui.dialog.js", "/_layouts/15/sp.ui.dialog.js");
         RegisterSodDep("sp.ui.dialog.js", "sp.res.resx");
-        RegisterSod("sp.js", "/_layouts/15/sp.debug.js");
+        RegisterSod("sp.js", "/_layouts/15/sp.js");
         RegisterSodDep("sp.js", "sp.runtime.js");
         RegisterSodDep("sp.js", "sp.ui.dialog.js");
         RegisterSodDep("sp.js", "sp.res.resx");
