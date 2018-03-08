@@ -15,16 +15,19 @@
 
 ;(function(){
     var pageRedirect = function(url,title,delay,override){
-    title = title || url;
-    override = override || false;
-    var count = delay || 10,
-        modaltitle = "Redirecting",
-        modalbody = "<div> Redirecting to: <br><a href='" + url + "'>" + title + "</a></div><br>You will be redirected in: <div id='countdownTimer' style='cursor:pointer;'>" + count + "</div>",
-        dialog = SP.UI.ModalDialog.showWaitScreenWithNoClose(modaltitle,modalbody),
+        title = title || url;
+        override = override || false;
+        var count = delay || 10,
+            modaltitle = "Redirecting",
+            modalbody = "<div> Redirecting to: <br><a href='" + url + "'>" + title + "</a></div><br>You will be redirected in: <div id='countdownTimer' style='cursor:pointer;'>" + count + "</div>",
+            dialog = SP.UI.ModalDialog.showWaitScreenWithNoClose(modaltitle,modalbody),
         timer = function(){
             if(--count < 0){
                 clearInterval(counter);
                 dialog.close();
+                if(url.indexOf('//') < 0 && url.indexOf('/') !== 0){
+                    url = '//' + url;
+                }
                 window.location.replace(url);
             }
             else{
@@ -49,7 +52,7 @@
     }
         
     if(_v_dictSod['sp.ui.dialog.js'].state === Sods.loaded){
-        SP.prototype.Redirect = pageRedirect;    
+        window.SP.Redirect = pageRedirect;    
     }
     else{
         RegisterSod("sp.res.resx", "/_layouts/15/ScriptResx.ashx");
@@ -61,7 +64,7 @@
         RegisterSodDep("sp.js", "sp.res.resx");
 
         SP.SOD.executeFunc('sp.ui.dialog.js',false,function(){
-            SP.prototype.Redirect = pageRedirect;
+            window.SP.Redirect = pageRedirect;
         });
     }
 }());
